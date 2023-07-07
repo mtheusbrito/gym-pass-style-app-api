@@ -3,6 +3,20 @@
 
 GymPass Style App.
 
+Install dependencies: 
+```
+npm install
+```
+Database up:
+```
+docker compose up -d
+```
+
+Run project: 
+```
+npm run start:dev
+```
+
 ## RF(Requisitos funcionais)
 
 - [ ] Deve ser possível se cadastrar
