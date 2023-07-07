@@ -1,5 +1,4 @@
 import 'dotenv/config'
-
 import z from 'zod'
 const envSchemma = z.object({
   NODE_ENV: z.enum(['dev', 'test', 'production']).default('dev'),
