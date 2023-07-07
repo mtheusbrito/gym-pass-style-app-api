@@ -3,13 +3,17 @@
 
 GymPass Style App.
 
-Install dependencies: 
+Install all dependencies: 
 ```
 npm install
 ```
 Database up:
 ```
 docker compose up -d
+```
+Run Migrations:
+```
+npx prisma migrate dev
 ```
 
 Run project: 
