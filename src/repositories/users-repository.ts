@@ -1,11 +1,6 @@
-import { prisma } from '@/lib/prisma'
-import { Prisma } from '@prisma/client'
+import { Prisma, User } from '@prisma/client'
 
-export class UsersRepository {
-  async create(data: Prisma.UserCreateInput) {
-    const user = await prisma.user.create({
-      data: { ...data },
-    })
-    return user
-  }
+export interface UsersRepository {
+  findByEmail(email: String): Promise<User | null>
+  create(data: Prisma.UserCreateInput): Promise<User>
 }
