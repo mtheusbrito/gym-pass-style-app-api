@@ -1,13 +1,13 @@
-# APP
+# GymPass Style App - API.
 
 
-GymPass Style App - API.
+ API REST para aplicação para check-ins em academias. Utilizando SOLID, Design Patterns, Docker para iniciar o banco de dados, JWT e Refresh Token, RBAC e diversos outros conceitos.
 
 Install all dependencies: 
 ```
 npm install
 ```
-Database up:
+Database up with docker:
 ```
 docker compose up -d
 ```
@@ -19,6 +19,10 @@ npx prisma migrate dev
 Run project: 
 ```
 npm run start:dev
+```
+Run tests:
+```
+npm run test
 ```
 
 ## RF(Requisitos funcionais)
