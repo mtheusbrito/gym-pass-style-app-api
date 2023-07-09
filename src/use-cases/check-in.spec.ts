@@ -21,8 +21,8 @@ describe('Check In Use Case', () => {
     vi.useFakeTimers()
 
     const gym = await gymsRepository.create({
-      latitude: new Decimal(0),
-      longitude: new Decimal(0),
+      latitude: lat,
+      longitude: lon,
       title: 'My Gym',
       description: '',
       phone: '',
@@ -36,8 +36,8 @@ describe('Check In Use Case', () => {
     vi.setSystemTime(new Date(2022, 0, 20, 8, 0, 0))
 
     const { checkIn } = await sut.execute({
-      gymId,
       userId,
+      gymId,
       userLatitude: lat,
       userLongitude: lon,
     })
@@ -47,16 +47,16 @@ describe('Check In Use Case', () => {
   it('should not be able to check in the same day', async () => {
     vi.setSystemTime(new Date(2022, 0, 20, 8, 0, 0))
     await sut.execute({
-      gymId,
       userId,
+      gymId,
       userLatitude: lat,
       userLongitude: lon,
     })
 
     await expect(async () => {
       await sut.execute({
-        gymId,
         userId,
+        gymId,
         userLatitude: lat,
         userLongitude: lon,
       })
@@ -66,18 +66,37 @@ describe('Check In Use Case', () => {
     vi.setSystemTime(new Date(2022, 0, 20, 8, 0, 0))
 
     await sut.execute({
-      gymId,
       userId,
+      gymId,
       userLatitude: lat,
       userLongitude: lon,
     })
     vi.setSystemTime(new Date(2022, 0, 21, 8, 0, 0))
     const { checkIn } = await sut.execute({
-      gymId,
       userId,
+      gymId,
       userLatitude: lat,
       userLongitude: lon,
     })
     expect(checkIn.id).toEqual(expect.any(String))
+  })
+  it('should not be able to check in on distant gym', async () => {
+    const gym = await gymsRepository.create({
+      id: gymId,
+      title: 'JavaScript Gym',
+      description: '',
+      phone: '',
+      latitude: new Decimal(-21.201587),
+      longitude: new Decimal(-41.9039643),
+    })
+
+    expect(async () => {
+      await sut.execute({
+        userId,
+        gymId: gym.id,
+        userLatitude: lat,
+        userLongitude: lon,
+      })
+    }).rejects.toBeInstanceOf(Error)
   })
 })
