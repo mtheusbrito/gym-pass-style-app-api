@@ -2,8 +2,9 @@ import fastify from 'fastify'
 import { appRoutes } from './http/routes'
 import { ZodError } from 'zod'
 import { env } from './env'
+import blippPlugin from 'fastify-blipp'
 export const app = fastify()
-
+app.register(blippPlugin)
 app.register(appRoutes)
 
 app.setErrorHandler((error, _, reply) => {
