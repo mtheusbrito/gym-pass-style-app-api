@@ -15,12 +15,25 @@ Run Migrations:
 ```
 npx prisma migrate dev
 ```
-
+   
 Run project: 
 ```
 npm run start:dev
 ```
-Run tests:
+
+#
+### Tests
+#### Config test E2E
+Create local package for test environment: 
+```
+cd prisma/vitest-environment-prisma && npm run link
+```
+Link local package in project:
+- In root of the project
+```
+npm link vitest-environment-prisma
+```
+Run all tests:
 ```
 npm run test
 ```
