@@ -23,20 +23,16 @@ npm run start:dev
 
 #
 ### Tests
-#### Config test E2E
-Create local package for test environment: 
-```
-cd prisma/vitest-environment-prisma && npm run link
-```
-Link local package in project:
-- In root of the project
-```
-npm link vitest-environment-prisma
-```
-Run all tests:
+Run tests unitaires:
 ```
 npm run test
 ```
+Run tests E2E:
+```
+npm run test:e2e
+``` 
+
+
 
 ## RF(Requisitos funcionais)
 
