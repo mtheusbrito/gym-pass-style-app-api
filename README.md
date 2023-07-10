@@ -35,7 +35,7 @@ npm run test
 - [x] Deve ser possível o usuário buscar academias próximas (até 10km); 
 - [x] Deve ser possível o usuário buscar academias pelo nome;
 - [x] Deve ser possível o usuário realizar check-in em uma academia;
-- [ ] Deve ser possível realizar o check-in de um usuário;
+- [x] Deve ser possível validar o check-in de um usuário;
 - [x] Deve ser possível cadastrar uma academia;
 
 
@@ -44,7 +44,7 @@ npm run test
 - [x] O usuário não deve poder se cadastrar com um e-mail duplicado;
 - [x] O usuário não pode fazer 2 check-in no mesmo dia;
 - [x] O usuário não pode fazer check-in se não estiver perto(100m) da academia;
-- [ ] O check-in só pode ser validado até 20 min após criado;
+- [x] O check-in só pode ser validado até 20 min após criado;
 - [ ] O check-in só pode ser validado por administradores;
 - [ ] A academia só pode ser cadastrada por administradores;
 
