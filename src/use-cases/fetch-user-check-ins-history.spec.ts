@@ -1,4 +1,4 @@
-import { expect, describe, it, beforeEach, vi } from 'vitest'
+import { expect, describe, it, beforeEach } from 'vitest'
 import { InMemoryCheckInsRepository } from '@/repositories/in-memory/in-memory-check-ins-repository'
 import { FetchUserCheckInsUseCase } from './fetch-user-check-ins-history'
 
@@ -10,7 +10,6 @@ describe('Fetch User Check-in History Use Case', () => {
     checkInsRepository = new InMemoryCheckInsRepository()
 
     sut = new FetchUserCheckInsUseCase(checkInsRepository)
-    vi.useFakeTimers()
   })
 
   it('should be able to fetch check-in history', async () => {
