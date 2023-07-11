@@ -11,8 +11,8 @@ app.register(fastifyJwt, {
   secret: env.JWT_SECRET,
 })
 app.register(blippPlugin)
-app.register(userRoutes)
-app.register(gymRoutes)
+app.register(userRoutes, { prefix: 'users' })
+app.register(gymRoutes, { prefix: 'gyms' })
 
 app.setErrorHandler((error, _, reply) => {
   if (error instanceof ZodError) {

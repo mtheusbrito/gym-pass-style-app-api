@@ -17,14 +17,16 @@ describe('Profile e2e', () => {
       password: 'abc123',
     })
 
-    const authResponse = await request(app.server).post('/sessions').send({
-      email: 'johndow@gmail.com',
-      password: 'abc123',
-    })
+    const authResponse = await request(app.server)
+      .post('/users/sessions')
+      .send({
+        email: 'johndow@gmail.com',
+        password: 'abc123',
+      })
     const { token } = authResponse.body
 
     const profileResponse = await request(app.server)
-      .get('/me')
+      .get('/users/me')
       .set('Authorization', `Bearer ${token}`)
       .send()
 
