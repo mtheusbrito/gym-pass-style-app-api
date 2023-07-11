@@ -5,6 +5,7 @@ import { env } from './env'
 import blippPlugin from 'fastify-blipp'
 import fastifyJwt from '@fastify/jwt'
 import { gymRoutes } from './http/controllers/gyms/routes'
+import { checkInsRoutes } from './http/controllers/check-ins/routes'
 export const app = fastify()
 
 app.register(fastifyJwt, {
@@ -13,6 +14,7 @@ app.register(fastifyJwt, {
 app.register(blippPlugin)
 app.register(userRoutes, { prefix: 'users' })
 app.register(gymRoutes, { prefix: 'gyms' })
+app.register(checkInsRoutes, { prefix: '/check-ins' })
 
 app.setErrorHandler((error, _, reply) => {
   if (error instanceof ZodError) {
