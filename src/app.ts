@@ -6,11 +6,20 @@ import blippPlugin from 'fastify-blipp'
 import fastifyJwt from '@fastify/jwt'
 import { gymRoutes } from './http/controllers/gyms/routes'
 import { checkInsRoutes } from './http/controllers/check-ins/routes'
+import fastifyCookie from '@fastify/cookie'
 export const app = fastify()
 
 app.register(fastifyJwt, {
   secret: env.JWT_SECRET,
+  sign: {
+    expiresIn: '10m',
+  },
+  cookie: {
+    cookieName: 'refreshToken',
+    signed: false,
+  },
 })
+app.register(fastifyCookie)
 app.register(blippPlugin)
 app.register(userRoutes, { prefix: 'users' })
 app.register(gymRoutes, { prefix: 'gyms' })
