@@ -14,7 +14,7 @@ app.register(fastifyJwt, {
 app.register(blippPlugin)
 app.register(userRoutes, { prefix: 'users' })
 app.register(gymRoutes, { prefix: 'gyms' })
-app.register(checkInsRoutes, { prefix: '/check-ins' })
+app.register(checkInsRoutes, { prefix: 'check-ins' })
 
 app.setErrorHandler((error, _, reply) => {
   if (error instanceof ZodError) {
