@@ -4,31 +4,31 @@ import { ResourceNotFoundError } from './errors/resource-not-found-error'
 import dayjs from 'dayjs'
 import { LateCheckInValidationError } from './errors/late-check-in-validation-error'
 
-type ValidadeCheckInUseCaseRequest = {
+type ValidateCheckInUseCaseRequest = {
   checkInId: string
 }
-type ValidadeCheckInUseCaseResponse = {
+type ValidateCheckInUseCaseResponse = {
   checkIn: CheckIn
 }
 
-class ValidadeCheckInUseCase {
+class ValidateCheckInUseCase {
   constructor(private checkInsRepository: CheckInsRepository) {}
 
   async execute({
     checkInId,
-  }: ValidadeCheckInUseCaseRequest): Promise<ValidadeCheckInUseCaseResponse> {
+  }: ValidateCheckInUseCaseRequest): Promise<ValidateCheckInUseCaseResponse> {
     const checkIn = await this.checkInsRepository.findById(checkInId)
 
     if (!checkIn) {
       throw new ResourceNotFoundError()
     }
 
-    const distanceInMinutesFromCheckinCreation = dayjs(new Date()).diff(
+    const distanceInMinutesFromCheckInCreation = dayjs(new Date()).diff(
       checkIn.created_at,
       'minutes',
     )
 
-    if (distanceInMinutesFromCheckinCreation > 20) {
+    if (distanceInMinutesFromCheckInCreation > 20) {
       throw new LateCheckInValidationError()
     }
     checkIn.validated_at = new Date()
@@ -38,4 +38,4 @@ class ValidadeCheckInUseCase {
   }
 }
 
-export { ValidadeCheckInUseCase }
+export { ValidateCheckInUseCase }

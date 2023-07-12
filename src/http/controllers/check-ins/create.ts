@@ -6,10 +6,10 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
   const userId = request.user.sub
   const createCheckInBodySchema = z.object({
     gymId: z.string(),
-    latitude: z.number().refine((value) => {
+    latitude: z.coerce.number().refine((value) => {
       return Math.abs(value) <= 90
     }),
-    longitude: z.number().refine((value) => {
+    longitude: z.coerce.number().refine((value) => {
       return Math.abs(value) <= 180
     }),
   })

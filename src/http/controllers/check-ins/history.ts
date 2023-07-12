@@ -8,7 +8,7 @@ export async function history(request: FastifyRequest, reply: FastifyReply) {
     page: z.coerce.number().min(1).default(1),
   })
 
-  const { page } = checkInHistoryQuerySchema.parse(request.params)
+  const { page } = checkInHistoryQuerySchema.parse(request.query)
   const fetchUserCheckInsHistoryUseCase = makeFetchUserCheckInsHistoryUseCase()
 
   const { checkIns } = await fetchUserCheckInsHistoryUseCase.execute({
@@ -16,5 +16,5 @@ export async function history(request: FastifyRequest, reply: FastifyReply) {
     userId: request.user.sub,
   })
 
-  return reply.status(201).send({ checkIns })
+  return reply.status(200).send({ checkIns })
 }
