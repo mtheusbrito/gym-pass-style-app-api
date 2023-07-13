@@ -25,6 +25,7 @@ class InMemoryUsersRepository implements UsersRepository {
       ...data,
       id: randomUUID(),
       created_at: new Date(),
+      role: data.role ?? 'MEMBER',
     }
     this.items.push(newItem)
     return newItem

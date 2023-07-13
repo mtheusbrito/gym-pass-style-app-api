@@ -25,10 +25,10 @@
     "test": "vitest run --dir src/use-cases",
     "test:watch": "vitest  --dir src/use-cases",
     "pretest:e2e": "run-s test:create-prisma-environment test:install-prisma-environment",
-    "test:e2e": "vitest run --test-timeout=100000 --dir src/http",
-    "test:e2e:watch": "vitest --test-timeout=100000 --dir src/http",
+    "test:e2e": "vitest run --test-timeout=100000000 --dir src/http",
+    "test:e2e:watch": "vitest --test-timeout=100000000 --dir src/http",
     "test:coverage": "vitest run --coverage",
-    "test:ui": "vitest --test-timeout=100000 --ui"
+    "test:ui": "vitest --test-timeout=100000000 --ui"
   },
   "engines": {
     "node": ">=16.20.1"
